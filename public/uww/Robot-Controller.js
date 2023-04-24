@@ -108,6 +108,7 @@ $(function () {
     let username = document.getElementById("username-input").value;
     username = username.replace(/\s/g, "");
     username = username.replace(/ /g, "");
+    username = username.replace(/[^a-zA-Z ]+/g, "");
     console.log("username: " + username);
     console.log("username: " + username.length);
     if (username == "" || username.length < 1) {
@@ -118,16 +119,17 @@ $(function () {
       }, 300);
       document.getElementById("username-input").value = "";
       document.getElementById("username-input").placeholder =
-        "Pls no obsenities";
-    } else {
-      console.log("username submit");
-      let wordForm = document.getElementById("username-input");
-      let word = wordForm.value;
-      word = word.replace(/\s/g, "");
+        "Pls use one word.";
+    } 
+    else {
+      // console.log("username submit");
+      // let wordForm = document.getElementById("username-input");
+      // let word = wordForm.value;
+      // word = word.replace(/\s/g, "");
 
       let chatObject = {
-        chat: word,
-        target: "all",
+        chat: username,
+        target: "All",
       };
       socket.emit("chat", chatObject);
 
