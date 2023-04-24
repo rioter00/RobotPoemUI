@@ -49,11 +49,7 @@ $(function () {
   //
   var changeUsername = document.getElementById("change-username");
 
-  const socket = io("http://ch-server.herokuapp.com/hub", {
-    query: {
-      username: getCookie("username") || "Audience_Performance_",
-    },
-  });
+  const socket = io("https://ch-server.herokuapp.com/hub");
 
   // console.log("CMScontroller");
 
