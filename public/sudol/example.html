@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Collab-Hub Example Web Interface</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container header" id="time">TIME</div>
+
+    <div id="sliders" class="section">
+      <div id="section_1" class="container">
+        <label for="slider_1">Slider 1</label>
+        <input
+          type="range"
+          class="slider"
+          id="slider_1"
+          header="slider_1"
+          min="0"
+          max="100"
+        />
+      </div>
+    </div>
+    <div id="sliders" class="section">
+      <div id="section_2" class="container">
+        <label for="slider_2">Slider 2</label>
+        <input type="range" class="slider" id="slider_2" header="slider_2"           min="0"
+        max="100"/>
+      </div>
+    </div>
+    <div id="sliders" class="section">
+      <div id="section_1" class="container">
+        <label for="slider_3">Slider 3</label>
+        <input
+          type="range"
+          class="slider"
+          id="slider_3"
+          header="slider_3"
+          min="0"
+          max="100"
+        />
+      </div>
+    </div>
+
+    <div id="sliders" class="section">
+      <div id="section_4" class="container">
+        <label for="slider_4">Slider 4</label>
+        <input type="range" class="slider" id="slider_4" header="slider_4"           min="0"
+        max="100"/>
+      </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <script src="ch-interface.js" async defer></script>
+  </body>
+</html>

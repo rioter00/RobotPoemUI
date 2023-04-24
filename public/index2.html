@@ -1,0 +1,346 @@
+<!-- https://stackoverflow.com/questions/48248832/stylesheet-not-loaded-because-of-mime-type -->
+
+<!doctype html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<head>
+  <title>Collab-Hub Web Interface</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="./web-client-style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- include Google's AJAX API loader -->
+  <!-- load JQuery and UI from Google (need to use UI to animate colors) -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.5.2/jquery-ui.min.js"></script> -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script src="/client-browser-controller.js"></script>
+</head>
+
+
+<div class="ping">
+  <p id="ping">--</p>
+</div>
+
+<div class="greater-container">
+  <div class="page-header">
+    <div class="tray">
+      <p class="title">Collab-Hub - v0.3.2 - Browser Interface</p>
+    </div>
+    <div class="column11">
+      <img src="images/Collab-Hub.png" class="logo">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="sections">
+      <div class="section-4">
+        <div class="section-header">
+          <b>Incoming Messages</b>
+        </div>
+        <div class="section-content">
+          <ul id="incoming-messages">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="sections">
+      <div class="section-1">
+        <div class="section-header">
+          <b>Incoming Chat Messages</b>
+        </div>
+        <div>
+          <ul id="incoming-messages">
+        </div>
+      </div>
+      <div class="section-1">
+        <div class="section-header">
+          <b>Send a Chat Message</b>
+        </div>
+        <div class="section-content">
+          <form id="chat-form" class="center">
+            <input id='target-text' onclick="return false" type="text" placeholder="Target (no quotes)"></input>
+            <input id="m" autocomplete="off" type="text" onclick="return false"
+              placeholder="Chat Message (no quotes)" /><button>Send</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="section-1">
+        <div class="section-header">
+          <b>Other Users</b>
+        </div>
+        <div class="section-content">
+          <ul id="otherUserList" class="list"></ul>
+          <ul id="usersList" class="list"></ul>
+        </div>
+      </div>
+      <div class="section-1">
+        <div class="section-header">
+          <b>Current Username / ID</b>
+        </div>
+        <div class="section-content">
+          <div class="listItem">
+            <p id="webUsername" class="listItemName"></p>
+          </div>
+          <input id='username-text' onclick="return false" type="text" placeholder="Change Username" size="14"></input>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-header">
+      <b>Trigger an Event</b>
+    </div>
+    <div class="sections">
+      <div class="section-1">
+        <p>publish - all</p>
+        <button id="event-button1" onclick="return false" value="webEvent1">event webEvent1</button><br />
+        <input id='event-button1-text' onclick="return false" type="text" placeholder="change header" size="14"></input>
+      </div>
+      <div class="section-1">
+        <p>publish - "123"</p>
+        <button id="event-button2" onclick="return false" value="webEvent2">event webEvent2</button><br />
+        <input id='event-button2-text' onclick="return false" type="text" placeholder="change header" size="14"></input>
+      </div>
+      <div class="section-1">
+        <p>push - all</p>
+        <button id="event-button3" onclick="return false" value="webEvent3">event webEvent3</button><br />
+        <input id='event-button3-text' onclick="return false" type="text" placeholder="change header" size="14"></input>
+      </div>
+      <div class="section-1">
+        <p>push - "123"</p>
+        <button id="event-button4" onclick="return false" value="webEvent4">event webEvent4</button><br />
+        <input id='event-button4-text' onclick="return false" type="text" placeholder="change header" size="14"></input>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-header">
+      <b>Send control values</b>
+    </div>
+    <div class="sections">
+      <div class="section-1">
+        <p>Publish - all</p>
+        <label for="slider1" id="slider1-label">control webSlider1 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider1" id="control-webSlider1" header="webSlider1">
+        <input id='control-webSlider1-text' onclick="return false" type="text" placeholder="change header"
+          size="14"></input>
+      </div>
+      <div class="section-1">
+        <p>Publish - "123"</p>
+        <label for="slider2" id="slider2-label">control webSlider2 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider2" id="control-webSlider2" header="webSlider2">
+        <input id='control-webSlider2-text' onclick="return false" type="text" placeholder="change header"
+          size="14"></input>
+      </div>
+      <div class="section-1">
+        <p>Push - all</p>
+        <label for="slider3" id="slider3-label">control webSlider3 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider3" id="control-webSlider3" header="webSlider3">
+        <input id='control-webSlider3-text' onclick="return false" type="text" placeholder="change header"
+          size="14"></input>
+      </div>
+      <div class="section-1">
+        <p>Push - "123"</p>
+        <label for="slider4" id="slider4-label">control webSlider4 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider4" id="control-webSlider4" header="webSlider4">
+        <input id='control-webSlider4-text' onclick="return false" type="text" placeholder="change header"
+          size="14"></input>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container tray">
+      <div class="column11 tray">
+        Other Users
+      </div>
+      <div class="column21 tray">
+
+      </div>
+      <div class="container column31 tray">
+        ObserveAll Controls
+      </div>
+      <div class="container column41 tray">
+        ObserveAll Events
+      </div>
+      <div class="container tray">
+      </div>
+
+      <div class="column12 tray">
+        <ul id="otherUserList" class="list"></ul>
+      </div>
+      <div class="column22 tray">
+
+      </div>
+      <div class="column32 tray">
+        <button id='oact'>Observe All Controls</button>
+        <button id='oacf'>Unobserve All Controls</button>
+      </div>
+      <div class="column42 tray">
+        <button id='oaet'>Observe All Events</button>
+        <button id='oaef'>Unobserve All Events</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-header">
+      <b>Published Events</b>
+    </div>
+    <div class="sections">
+      <div class="section-1">
+        <div>
+          <p>Events</p>
+        </div>
+        <div>
+          <ul id="allEventsList" class="list"></ul>
+        </div>
+      </div>
+
+
+      <div class="section-1">
+        <div>
+          <p>Available Events</p>
+        </div>
+        <div>
+          <ul id="availableEventsList" class="list"></ul>
+        </div>
+      </div>
+
+      <div class="section-1">
+        <div>
+          <p>My Observed Events</p>
+        </div>
+        <div>
+          <ul id="observedEventsList" class="list"></ul>
+        </div>
+        <div>
+          <ul id="myEventsList" class="list"></ul>
+        </div>
+      </div>
+
+      <div class="section-1">
+        <div>
+          <p>Observe All Events</p>
+        </div>
+        <div>
+          <button id='oaet'>Observe All Events</button>
+          <button id='oaef'>Unobserve All Events</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-header">
+      <b>Published Controls</b>
+    </div>
+    <div class="sections">
+      <div class="section-1">
+        <p>All Controls</p>
+
+        <div>
+          <ul id="allControlsList" class="list"></ul>
+        </div>
+      </div>
+
+      <div class="section-1">
+        <p>Available Controls</p>
+        <div>
+          <ul id="availableControlsList" class="list"></ul>
+        </div>
+      </div>
+
+      <div class="section-1">
+        <p>My Observed Controls</p>
+        <div>
+          <ul id="observedControlsList" class="list"></ul>
+        </div>
+      </div>
+      <div class="container tray">
+      </div>
+
+      <div class="section-1">
+        <p>Observe All Controls</p>
+        <div>
+          <button id='oact'>Observe All Controls</button>
+          <button id='oacf'>Unobserve All Controls</button>
+        </div>
+      </div>
+      <div class="container tray">
+      </div>
+
+      <div class="sendMessageForm tray">
+      </div>
+      <div class="column12 tray">
+        <ul id="allControlsList" class="list"></ul>
+      </div>
+      <div class="column22 tray">
+        <ul id="availableControlsList" class="list"></ul>
+      </div>
+      <div class="column32 tray">
+        <ul id="observedControlsList" class="list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-header">
+      <b>Rooms</b>
+    </div>
+    <div class="sections">
+      <div class="section-1">
+        <p>
+          All Rooms
+        </p>
+        <div>
+          <ul id="allRoomsList" class="list"></ul>
+        </div>
+      </div>
+
+
+      <div class="section-1">
+        <p>Available Rooms</p>
+        <div>
+          <ul id="availableRoomsList" class="list"></ul>
+        </div>
+
+      </div>
+
+
+      <div class="section-1">
+        <p>My Rooms</p>
+
+        <div>
+          <ul id="myRoomsList" class="list"></ul>
+        </div>
+      </div>
+
+      <div class="section-1">
+        <p>Create Room</p>
+
+        <div>
+          <form id="join-room-form" onsubmit="return false">
+            <input id="j" autocomplete="off" type="text" placeholder="Join Room (no quotes)" /><button>Create</button>
+          </form>
+          <!-- <form id="leave-room-form">
+          <input id="l" autocomplete="off" placeholder="Leave Room (no quotes)" /><button>Leave</button>
+        </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>

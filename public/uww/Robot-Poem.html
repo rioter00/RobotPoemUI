@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Robot Poem Interface</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <script src="https://cdn.socket.io/4.4.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <link rel="stylesheet" href="UWW-style.css" />
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <div class="container">
+      <div id="change-username"></div>
+      <div id="header">Web Instrument</div>
+      <!-- <img id="ch-logo" height="10px" width="10px" src="./images/Collab-Hub.png" alt="" /> -->
+      <div id="description-row">
+        <div id="description">This is a prototype web instrument.</div>
+        <div id="time-remaining">01</div>
+    </div>
+      <div id="username-container" class="white-rounded">
+        <div id="username-label">Your username</div>
+        <div id="username">Username_001</div>
+      </div>
+      <div class="instruments white-rounded">
+        <div class="details">Available instruments.</div>
+        <div class="buttons">
+          <button id="practice-button">FM-Instrument</button>
+          <button id="performance-button">Performance</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="interface-container">
+      <div class="interface white-rounded" id="practice-interface">
+        <div class="direction">
+          <h2>FM Instrument</h2>
+          <div class="details">
+            Harmoncity changes timbre. Touch the grey pad to activate a sound. The closer to the top of the pad the brighter the timbre. The closer to the left edge, the lower the tone.
+          </div>
+        </div>
+        <div id="destination-container">
+          <select id="harm-setting" name="dropdown">
+            <option value="1" selected>Harm 1.2</option>
+            <option value="2">Harm 8</option>
+            <option value="3">Harm 4</option>
+            <option value="4">Harm .5</option>
+          </select>
+        </div>
+        <div>
+          <input type="button" value="Start Audio" id="start-audio" />
+        </div>
+        <div id="practice-canvas-node">
+          <!-- <canvas id="practice-canvas" style="border:1px solid #000000;"></canvas> -->
+          <!-- https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Using_Touch_Events -->
+        </div>
+
+        <div>
+          <button id="close-button2" class="close">
+            <img
+              src="../images/down-chevron-svgrepo-com.svg"
+              alt=""
+              class="close-img"
+              version="1.1"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="interface-container">
+      <div class="interface white-rounded" id="performance-interface">
+        <div class="direction">
+          <h2>Frequency Modulation Synthesizer</h2>
+          Select a parameter and change its value.
+        </div>
+        <div id="destination-container">
+          <select id="fm-destination" name="dropdown">
+            <option value="carr_freq" selected>Carrier Frequency</option>
+            <option value="harm">Harmonicity</option>
+            <option value="mod_index">Modulation Index</option>
+            <!-- <option value="mod2_freq">Modulating Frequency 2</option>
+            <option value="mod2_depth">Modulation Depth 2</option> -->
+          </select>
+        </div>
+        <input
+          type="range"
+          min="20"
+          max="1000"
+          value="400"
+          id="fm-slider"
+          step="0.1"
+        />
+        <div id="fm-slider-value">10000</div>
+        <div>
+          <button id="close-button1" class="close">
+            <img
+              src="../images/down-chevron-svgrepo-com.svg"
+              alt=""
+              class="close-img"
+              version="1.1"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="username-modal">
+      <div id="username-modal-content">
+        <div id="username-modal-header">
+          <div id="header">Robot Poem</div>
+          <h2>Offer a word to the poem</h2>
+          <div class="details">
+            Type in a single word. Avoid profanity.
+          </div>
+        </div>
+        <div id="username-modal-body">
+          <input type="text" id="username-input" />
+          <button id="username-submit">Submit</button>
+        </div>
+      </div>
+    </div>
+    <script src="Robot-Controller.js"></script>
+    <!-- <script src="" async defer></script> -->
+  </body>
+</html>

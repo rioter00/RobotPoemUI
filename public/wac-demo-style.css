@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    /* border: 1px dotted red; */
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+.videos {
+    display: flex;
+}
+
+.main > div {
+    flex: 100%;
+    /* width: 20px; */
+    padding: 5px;
+}
+
+.controls {
+    display: flex;
+}
+
+.controls > div {
+    flex: 33%;
+}
+
+
+.ctrl-btn button {
+    width: 80px;
+}
+
+.progress {
+    width: 100%;
+    /* Full-width */
+    appearance: none;
+    border-radius: 5px;
+    height: 5px;
+    background: #d3d3d3;
+    /* Grey background */
+    outline: none;
+}
+
+#drum-trigger {
+    display: none;
+}
+
+#drum-own {
+    display: none;
+}

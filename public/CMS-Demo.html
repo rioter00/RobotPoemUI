@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <script src="/socket.io/socket.io.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <link rel="stylesheet" href="CMS-style.css" />
+    <script src="/CMS-controller.js"></script>
+    <!-- <script src="/CMS-min.js"></script> -->
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <div class="container">
+    <div id="change-username"></div>
+      <div id="header">Collab-Hub Educational Demo</div>
+      <!-- <img id="ch-logo" height="10px" width="10px" src="./images/Collab-Hub.png" alt="" /> -->
+      <div id="description">
+        This demo interface allows a user to select controllers for a lesson.
+      </div>
+      <div id="username-container" class="white-rounded">
+        <div id="username-label">Your username</div>
+        <div id="username">Username_001</div>
+      </div>
+      <div class="instruments white-rounded">
+        <div class="details">Available lessons and modules.</div>
+        <div class="buttons">
+          <button id="seq-button">Sequencer</button>
+          <button id="fm-button">FM-Synth</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="interface-container">
+      <div class="interface white-rounded" id="fm-interface">
+        <div class="direction">
+          <h2>Frequency Modulation Synthesizer</h2>
+          Select a parameter and change its value.
+        </div>
+        <div id="destination-container">
+          <select id="fm-destination" name="dropdown">
+            <option value="carr_freq" selected>Carrier Frequency</option>
+            <option value="harm">Harmonicity</option>
+            <option value="mod_index">Modulation Index</option>
+            <!-- <option value="mod2_freq">Modulating Frequency 2</option>
+            <option value="mod2_depth">Modulation Depth 2</option> -->
+          </select>
+        </div>
+        <input
+          type="range"
+          min="20"
+          max="1000"
+          value="400"
+          id="fm-slider"
+          step="0.1"
+        />
+        <div id="fm-slider-value">10000</div>
+
+        <div>
+          <button id="close-button1" class="close">
+            <img
+              src="./images/down-chevron-svgrepo-com.svg"
+              alt=""
+              class="close-img"
+              version="1.1"
+            />
+          </button>
+          <!-- <button id="close-button1" class="close">v</button> -->
+        </div>
+      </div>
+    </div>
+    <div class="interface-container">
+      <div class="interface white-rounded" id="seq-interface">
+        <div class="direction">
+          <h2>Sequencer Instrument</h2>
+          <div class="details">
+            Toggle the checkboxes to activate the beats.
+          </div>
+        </div>
+        <div id="sequence">
+          <input type="checkbox" name="" id="seq-1" /><input
+            type="checkbox"
+            name=""
+            id="seq-2"
+          /><input type="checkbox" name="" id="seq-3" /><input
+            type="checkbox"
+            name=""
+            id="seq-4"
+          /><input type="checkbox" name="" id="seq-5" /><input
+            type="checkbox"
+            name=""
+            id="seq-6"
+          /><input type="checkbox" name="" id="seq-7" /><input
+            type="checkbox"
+            name=""
+            id="seq-8"
+          />
+        </div>
+        <div id="destination-container">
+          <select id="seq-destination" name="dropdown">
+            <option value="cym_sequence" selected>Cymbal</option>
+            <option value="snare_sequence">Snare</option>
+            <option value="clap_sequence">Clap</option>
+            <option value="kick_sequence">Kick</option>
+          </select>
+        </div>
+        <div>
+          <input type="button" value="Submit" id="seq-submit" />
+        </div>
+        <div>
+          <button id="close-button2" class="close">
+            <img
+              src="./images/down-chevron-svgrepo-com.svg"
+              alt=""
+              class="close-img"
+              version="1.1"
+            />
+          </button>
+          <!-- <button id="close-button2" class="close">v</button> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="username-modal">
+      <div id="username-modal-content">
+        <div id="username-modal-header">
+            <div id="header">Collab-Hub Educational Demo</div>
+          <h1>Enter your username</h1>
+          <div class="details">
+            To ensure unique usernames, some numbers will automatically be added
+            after you submit.
+          </div>
+        </div>
+        <div id="username-modal-body">
+          <input type="text" id="username-input" />
+          <button id="username-submit">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="" async defer></script>
+  </body>
+</html>
